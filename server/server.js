@@ -2,7 +2,7 @@ import {WebSocketServer} from 'ws';
 import {v4 as uuidv4} from 'uuid';
 
 const socket = new WebSocketServer({port: 8000});
-const hello='hello';
+const groups= {};
 function handelMessage(message){
     console.log("sending message");
     const mes= message.userName+': '+message.message;
@@ -22,11 +22,17 @@ socket.on('connection', function connection(e) {
         }
         else{
             console.log("sec");
-            const newMessage= 'New User Was Added: '+ message.userName;
-            console.log(newMessage);
-            socket.clients.forEach(client => {
-            client.send(JSON.stringify(newMessage));
-            });
+            if(message.group){
+               const g_name= message.group;
+               if(!groups.g_name){
+                groups.g_name= [];
+               }
+               groups.g_name.push(e);
+               console.log(groups);
+               groups.g_name.forEach(client => {
+                client.send(JSON.stringify('hello'));
+               })
+            }
         }
     })
     

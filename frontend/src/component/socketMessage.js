@@ -22,15 +22,14 @@ const Socket = () => {
    
   if(socket.current.readyState === WebSocket.OPEN){
     
-    socket.current.send(JSON.stringify({type: 'name', userName}));
+    socket.current.send(JSON.stringify({type_1: 'name', group: 'g1', userName}));
   }
   else{
     socket.current.addEventListener('open', () => {
-      
-      socket.current.send(JSON.stringify({type: 'name', userName}));
+      socket.current.send(JSON.stringify({type_1: 'name', group: 'g1', userName}));
     });
   }
-  
+
   socket.current.onmessage = function(message){
      const data= JSON.parse(message.data);
      console.log(data);
@@ -39,7 +38,7 @@ const Socket = () => {
   }, []);
   
   const handelMessage = () =>{
-    socket.current.send(JSON.stringify({type: 'message', userName, message}));      
+    socket.current.send(JSON.stringify({type_1: 'message', userName, message}));      
     setMessage('');
 }
   const handelClose = () => {
