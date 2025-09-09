@@ -10,15 +10,14 @@ const Socket = () => {
   const [name, setName] = useState('');
   const socket= useRef(null);
   const uiMessage = useRef([]);
-  console.log(socket.current);
-  console.log(userName);
+ console.log(userName);
   const [userMessage, setUserMessage]= useState([]);
   
 
   useEffect(() => {
 
   socket.current = new WebSocket('ws://localhost:8000');
-  console.log('useEffect');
+   /*console.log(socket.current);
    
   if(socket.current.readyState === WebSocket.OPEN){
     
@@ -34,7 +33,7 @@ const Socket = () => {
      const data= JSON.parse(message.data);
      console.log(data);
      setUserMessage(prev => [...prev, data]);
-  }
+  }*/
   }, []);
   
   const handelMessage = () =>{

@@ -1,5 +1,6 @@
 import {WebSocketServer} from 'ws';
 import {v4 as uuidv4} from 'uuid';
+import http from 'http';
 
 const socket = new WebSocketServer({port: 8000});
 const groups= {};
@@ -12,8 +13,8 @@ function handelMessage(message){
 }
 
 socket.on('connection', function connection(e) {
-    
-    e.on('message', function incoming(frontend){
+    console.log("client connected");
+    /*e.on('message', function incoming(frontend){
          const message= JSON.parse(frontend);
          console.log(message);
          if(message.type === 'message'){
@@ -30,11 +31,11 @@ socket.on('connection', function connection(e) {
                groups.g_name.push(e);
                console.log(groups);
                groups.g_name.forEach(client => {
-                client.send(JSON.stringify('hello'));
+                client.send(JSON.stringify('hii'));
                })
             }
         }
-    })
+    })*/
     
 })
 
