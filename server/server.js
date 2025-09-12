@@ -13,8 +13,7 @@ function handelMessage(message){
 }
 
 socket.on('connection', function connection(e) {
-    console.log("client connected");
-    /*e.on('message', function incoming(frontend){
+   e.on('message', function incoming(frontend){
          const message= JSON.parse(frontend);
          console.log(message);
          if(message.type === 'message'){
@@ -35,7 +34,7 @@ socket.on('connection', function connection(e) {
                })
             }
         }
-    })*/
+    })
     
 })
 

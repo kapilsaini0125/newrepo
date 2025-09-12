@@ -12,21 +12,20 @@ function Chat() {
     useEffect(() => {
       client.current= io('http://localhost:8000');
       console.log(client.current);
-      client.current.on('connect', () => {
-      console.log("Socket on");
+      
+      client.current.emit('join', 'roomName');
+      client.current.on('roomMessage', (msg) => {
+        console.log(msg);     
+        setMessage(prev => [...prev, msg]);
       });
-
     },[]); 
    
     const handelButton = async (e) => {
       e.preventDefault();
       console.log(client.current);
-      client.current.emit('clientMessage', userName+':'+text);
+      client.current.emit('clientMessage', {room: 'roomName', message: userName+':'+text});
       setText('');
-      client.current.on('serverMessage', (msg) => {
-             //alert(`server ${msg}`);
-              setMessage(prev => [...prev, msg]);
-      });
+      
     }
     console.log(message);
 

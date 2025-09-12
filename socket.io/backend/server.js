@@ -23,9 +23,14 @@ app.get('/request', (req, res) => {
 
 io.on('connection', (client) => {
     console.log("client connected");
-      client.on('clientMessage', (message) => {
-           console.log(message);
-           io.sockets.emit('serverMessage', message);
+      client.on('join', (roomName) => {
+           client.join(roomName);
+           console.log("room connected");
+           io.to(roomName).emit('roomMessage', 'new client added');
+      });
+      client.on('clientMessage', ({room, message}) => {
+            console.log("broadcasting to rooms");
+            io.to(room).emit('roomMessage', message);
       });
 });
 

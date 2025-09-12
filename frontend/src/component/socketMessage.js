@@ -17,7 +17,7 @@ const Socket = () => {
   useEffect(() => {
 
   socket.current = new WebSocket('ws://localhost:8000');
-   /*console.log(socket.current);
+   console.log(socket.current);
    
   if(socket.current.readyState === WebSocket.OPEN){
     
@@ -33,7 +33,7 @@ const Socket = () => {
      const data= JSON.parse(message.data);
      console.log(data);
      setUserMessage(prev => [...prev, data]);
-  }*/
+  }
   }, []);
   
   const handelMessage = () =>{
